@@ -4,7 +4,7 @@ Includes:
 
 - **BigQueryToGCSOperator:** To export tables into Google Cloud Storage (example is with partitions).
 
-- **PythonOperator:** To leverage GoogleCloudStorageHook in a custom function.
+- **PythonOperator:** Leveraging GoogleCloudStorageHook in a custom function to compose partition text files into one file.
 
 - **GCSDeleteObjectsOperator:** To delete objects from a given bucket and prefix.
 
@@ -31,4 +31,10 @@ docker-compose up
 
 Then go to [local Airflow.](http://0.0.0.0:8080/)
 
+Go to the configurations to set up your GCP Connection. Please follow [the instructions on the providers documentation.](https://airflow.apache.org/docs/apache-airflow-providers-google/stable/connections/gcp.html)
+
+![Connection to GCS](screenshots/connection.png)
+
 Run the DAGs on demand and see the pipeline running.
+
+![Running DAG](screenshots/running_dag.png)
