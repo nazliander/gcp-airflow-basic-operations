@@ -1,4 +1,4 @@
-from airflow.contrib.hooks.gcs_hook import GoogleCloudStorageHook
+from airflow.providers.google.cloud.hooks.gcs import GCSHook
 
 
 def compose_files_into_one(bucket_name: str,
@@ -6,7 +6,7 @@ def compose_files_into_one(bucket_name: str,
                            destination_object: str,
                            gcp_conn_id: str) -> None:
     '''Composes wildcarded files into one in the given destination'''
-    gcs_hook = GoogleCloudStorageHook(
+    gcs_hook = GCSHook(
         gcp_conn_id=gcp_conn_id
     )
     list_of_objects = gcs_hook.list(
