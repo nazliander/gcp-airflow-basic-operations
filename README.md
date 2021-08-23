@@ -11,18 +11,19 @@ Includes:
 
 ## Running locally:
 
-Initialize the Airflow in Docker:
+Initialize the Airflow in Docker. It will ask you about installing [yq](https://github.com/mikefarah/yq) in your Linux/Mac development environment:
 
 ```bash
 ./init.sh
 ```
 
-To set your GCP_PROJECT_ID, GCP_BIGQUERY_DATASET_NAME, GCP_BIGQUERY_EXPORT_BUCKET_NAME environment variables, add those lines on the docker-compose.yaml airflow-common service environment:
+If you don't want to use an external tool to edit your docker-compose, please set your GCP_PROJECT_ID, GCP_BIGQUERY_DATASET_NAME, GCP_BIGQUERY_EXPORT_BUCKET_NAME, BIGQUERY_TABLE_NAME environment variables manually. This is possible by add those lines on the `docker-compose.yaml` `x-airflow-common` service environment:
 
 ```
     GCP_PROJECT_ID: '<YOUR-PROJECT-ID>'
     GCP_BIGQUERY_DATASET_NAME: '<YOUR-DATASET>'
     GCP_BIGQUERY_EXPORT_BUCKET_NAME: '<YOUR-BUCKET-NAME>'
+    BIGQUERY_TABLE_NAME: '<YOUR-TABLE-NAME>'
 ```
 
 ```bash
