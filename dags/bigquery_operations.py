@@ -1,5 +1,5 @@
 import os
-from airflow import models
+from airflow.models import DAG
 from airflow.providers.google.cloud.transfers.bigquery_to_gcs import (
     BigQueryToGCSOperator)
 from airflow.providers.google.cloud.operators.gcs import (
@@ -17,11 +17,11 @@ DATA_EXPORT_BUCKET_NAME = os.getenv(
 TABLE = os.getenv('BIGQUERY_TABLE_NAME', 'bigquery-table')
 
 
-with models.DAG(
-        'gcp_dag',
-        schedule_interval=None,
-        start_date=days_ago(1),
-        tags=['example'],
+with DAG(
+    'gcp_dag',
+    schedule_interval=None,
+    start_date=days_ago(1),
+    tags=['example'],
 ) as dag:
 
     DS_NODASH = '{{ ds_nodash }}'

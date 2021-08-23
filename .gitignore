@@ -3,3 +3,5 @@ credentials
 .DS_Store
 docker-compose.yaml
 .env
+Pipfile*
+.coverage
