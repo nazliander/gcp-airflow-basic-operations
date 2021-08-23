@@ -4,7 +4,7 @@ from airflow.providers.google.cloud.transfers.bigquery_to_gcs import (
     BigQueryToGCSOperator)
 from airflow.providers.google.cloud.operators.gcs import (
     GCSDeleteObjectsOperator)
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
 
 from callable_functions.gcs_compose import compose_files_into_one
@@ -43,7 +43,6 @@ with DAG(
     compose_files = PythonOperator(
         task_id='gcs_compose',
         python_callable=compose_files_into_one,
-        provide_context=True,
         op_kwargs={
             'bucket_name': DATA_EXPORT_BUCKET_NAME,
             'source_object_prefix': EXPECTED_FILE_NAME,
