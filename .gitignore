@@ -5,3 +5,7 @@ docker-compose.yaml
 .env
 Pipfile*
 .coverage
+.pytest_cache
+
+*.json
+*.csv

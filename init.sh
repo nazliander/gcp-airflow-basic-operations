@@ -12,7 +12,7 @@ echo "Do you wish to install yq via brew for Linux / MacOS?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) brew install yq; break;;
-        No ) echo "You need to set your own GCP environment variables."; break;;
+        No ) echo "If you do not have yq then need to set your own GCP environment variables."; break;;
     esac
 done
 
@@ -34,7 +34,7 @@ set_gcp_env_variables_with_yq () {
 echo "Do you wish to set your own GCP environment variables with yq?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) set_gcp_env_variables_with_yq; break;;
+        Yes ) set_gcp_env_variables_with_yq && yq e -i '.x-airflow-common.environment.AIRFLOW__CORE__LOAD_EXAMPLES = "false"' docker-compose.yaml; break;;
         No ) echo "Don't forget to set your GCP_PROJECT_ID, GCP_BIGQUERY_DATASET_NAME, GCP_BIGQUERY_EXPORT_BUCKET_NAME, BIGQUERY_TABLE_NAME environment variables within the docker-compose.yaml"; exit;;
     esac
 done
