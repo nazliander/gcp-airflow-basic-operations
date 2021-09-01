@@ -36,7 +36,7 @@ with DAG(
         print_header=False,
         source_project_dataset_table=f'{DATASET_NAME}.{TABLE}',
         destination_cloud_storage_uris=[
-            f'gs://{DATA_EXPORT_BUCKET_NAME}/{EXPECTED_FILE_NAME}-*.txt.zip',
+            f'gs://{DATA_EXPORT_BUCKET_NAME}/{EXPECTED_FILE_NAME}-*.csv.gz',
         ],
     )
 
@@ -46,7 +46,7 @@ with DAG(
         op_kwargs={
             'bucket_name': DATA_EXPORT_BUCKET_NAME,
             'source_object_prefix': EXPECTED_FILE_NAME,
-            'destination_object': f'{EXPECTED_FILE_NAME}.zip',
+            'destination_object': f'{EXPECTED_FILE_NAME}.csv.gz',
             'gcp_conn_id': 'gcp_connection_id'
             },
     )
